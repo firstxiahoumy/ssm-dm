@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dm.net.dao.UserMapper">
+    <!--    就是mybatis中的所有查询，都必须返回resultType或者resultMap的值，否则就会报如上错误的-->
+    <!--    A query was run and no Result Maps were found for the Mapped Statement-->
+
+    <!-- 登录 -->
+    <select id="login" resultType="Users" parameterType="Users">
+ 		select * from ssmdm.user
+ 		where
+ 	</select>
+
+    <!-- 注册 -->
+    <select id="register" parameterType="Users">
+ 		insert into ssmdm.user
+ 		()
+ 		values
+ 		()
+ 	</select>
+
+    <!-- 忘记密码 -->
+    <update id="forgot" parameterType="Users">
+        update ssmdm.user
+        SET
+        where
+    </update>
+
+    <!-- 根据id注销 -->
+    <delete id="logout" parameterType="int">
+        delete from ssmdm.user
+        where
+    </delete>
+
+    <!-- 更改个人信息 -->
+    <update id="update" parameterType="Users">
+        update ssmdm.user
+        set
+        where
+    </update>
+
+    <!--  -->
+    <update id="avatar" parameterType="Users">
+        update ssmdm.user
+        set
+        where
+    </update>
+
+</mapper>

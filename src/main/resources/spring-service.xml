@@ -14,5 +14,37 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
+    <!-- 扫描service相关的bean -->
+    <context:component-scan base-package="dm.net.service" />
+
+
+    <!-- 注入IOC -->
+
+    <!--AdminServiceImpl注入到IOC容器中-->
+    <bean id="AdminServiceImpl" class="dm.net.service.Impl.AdminServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+    </bean>
+    <!--UserServiceImpl注入到IOC容器中-->
+    <bean id="UserServiceImpl" class="dm.net.service.Impl.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- aop支持 -->
+    <!-- 配置事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 配置事务切入 -->
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* dm.net.dao.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
 
 </beans>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dm.net.dao.AdminMapper">
+    <!-- login -->
+    <select id="aLogin"  resultType="Admin" parameterType="Admin">
+ 		select * from ssmdm.admin
+ 		where
+ 	</select>
+
+    <!-- 添加 -->
+    <!-- 管理员 -->
+    <insert id="addAdmin"  parameterType="Admin" >
+        insert into ssmdm.admin
+        ()
+        values ()
+    </insert>
+    <!-- 用户 -->
+    <insert id="addUser" parameterType="Users">
+        insert into ssmdm.user
+        ()
+        values ()
+    </insert>
+
+    <!--根据id删除-->
+    <!-- 管理员 -->
+    <delete id="deleteAdminById" parameterType="int">
+        delete from ssmdm.admin
+        where
+    </delete>
+    <!-- 用户 -->
+    <delete id="deleteUserById" parameterType="int">
+        delete from ssmdm.user
+        where
+    </delete>
+
+    <!--更新-->
+    <!-- 管理员 -->
+    <update id="updateAdmin" parameterType="Admin">
+        update ssmdm.admin
+        set
+        where
+    </update>
+    <!-- 用户 -->
+    <update id="updateUser" parameterType="Users">
+        update ssmdm.user
+        set
+        where
+    </update>
+
+    <!--根据id查询,返回-->
+    <!-- 管理员 -->
+    <select id="queryAdminById" resultType="Admin">
+        select * from ssmdm.admin
+        where
+    </select>
+    <!-- 用户 -->
+    <select id="queryUserById" resultType="Users">
+        select * from ssmdm.user
+         where
+    </select>
+
+    <!--查询全部-->
+    <!-- 管理员 -->
+    <select id="queryAllAdmin" resultType="Admin">
+        SELECT * from ssmdm.admin
+    </select>
+    <!-- 用户 -->
+    <select id="queryAllUser" resultType="Users">
+        SELECT * from ssmdm.user
+    </select>
+
+    <!-- 搜索 -->
+    <!-- 管理员 -->
+    <select id="queryAdminByEmail" resultType="Admin">
+        select * from ssmdm.admin
+        where
+    </select>
+    <!-- 用户 -->
+    <select id="queryUserByEmail" resultType="Users">
+        select * from ssmdm.user
+        where
+    </select>
+
+</mapper>

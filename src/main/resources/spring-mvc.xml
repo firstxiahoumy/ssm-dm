@@ -10,5 +10,81 @@
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- 配置SpringMVC -->
+    <!-- 1.开启SpringMVC注解驱动 -->
+    <mvc:annotation-driven />
+    <!-- 2.静态资源默认servlet配置-->
+    <mvc:default-servlet-handler/>
+
+    <bean id="exceptionResolver" class="dm.net.exception.AllExceptionHandler"></bean>
+
+    <!-- 3.配置jsp 显示ViewResolver视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- 4.扫描web相关的bean -->
+    <context:component-scan base-package="dm.net.controller" />
+
+    <!-- 5.拦截配置 -->
+    <!--    <mvc:resources location="/" mapping="/**/*.js"/>-->
+    <!--    <mvc:resources location="/" mapping="/**/*.css"/>-->
+    <!--    <mvc:resources location="/assets/" mapping="/assets/**/*"/>-->
+    <!--    <mvc:resources location="/images/" mapping="/images/*" cache-period="360000"/>-->
+    <!--    -->
+    <!--    <mvc:interceptors>-->
+    <!--        <mvc:interceptor>-->
+    <!--             <mvc:mapping path="/**/*"/>-->
+    <!--             <mvc:exclude-mapping path="/**/fonts/*"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*.css"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*.js"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*.png"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*.gif"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*.jpg"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*.jpeg"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*login*"/>-->
+    <!--             <mvc:exclude-mapping path="/**/*Login*"/>-->
+    <!--             <bean class="com.xhmy.interceptor.VisitInterceptor"></bean>-->
+    <!--         </mvc:interceptor>-->
+    <!--    </mvc:interceptors>-->
+    <!--    <bean id="jsonConverter"-->
+    <!--          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>-->
+    <!--    <bean-->
+    <!--            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+    <!--        <property name="messageConverters">-->
+    <!--            <list>-->
+    <!--                <ref bean="jsonConverter" />-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+    <!--    &lt;!&ndash; 配置拦截器 多个拦截器顺序执行&ndash;&gt;-->
+    <!--    <mvc:interceptors>-->
+    <!--        <mvc:interceptor>-->
+    <!--            <mvc:mapping path="/**"/>-->
+    <!--            <bean class="com.xhmy.interceptor.LoginInterceptor">-->
+    <!--                &lt;!&ndash; 配置属性列表 &ndash;&gt;-->
+    <!--                <property name="excludeMappingUrl">&lt;!&ndash; 列表中包含的文件后缀 &ndash;&gt;-->
+    <!--                    <list>-->
+    <!--                        <value>/toLogin</value>-->
+    <!--                        <value>/vaild</value>-->
+    <!--                        <value>/out</value>-->
+    <!--                        <value>.js</value>-->
+    <!--                        <value>.css</value>-->
+    <!--                        <value>.gif</value>-->
+    <!--                        <value>.png</value>-->
+    <!--                        <value>.map</value>-->
+    <!--                        <value>.jpg</value>-->
+    <!--                        <value>.woff3</value>-->
+    <!--                        <value>.woff2</value>-->
+    <!--                        <value>.woff</value>-->
+    <!--                        <value>.ttf</value>-->
+    <!--                    </list>-->
+    <!--                </property>-->
+    <!--            </bean>-->
+    <!--        </mvc:interceptor>-->
+    <!--    </mvc:interceptors>-->
+
 
 </beans>
