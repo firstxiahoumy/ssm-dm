@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,22 +7,25 @@
     <!-- ico图片 -->
     <link rel="icon" href="../../../favicon.ico">
     <!--  -->
-    <title>index || Directory Management</title>
+    <title> || Directory Management</title>
     <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.min.css" type="text/css">
-    <!-- 引入 bootstrap js文件 -->
-    <script href="../../../bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- 自己定义css -->
-<%--    <link rel="stylesheet" href="../../../css/admin/" type="text/css">--%>
-    <!-- 自定义js -->
-<%--    <script src="../../../js/admin/" type="text/javascript"></script>--%>
+    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <!-- jquery -->
-    <script src="../../../jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
-    <!-- 网络文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap js文件 -->
+    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 自己定义css -->
+    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <!-- 自定义js $nbsp; -->
+    <script src="../../dm_net/js/admin/"  type="text/javascript"></script>
+    <!-- 网络文件
+    <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
+    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>--%>
+    -->
 
-    <!-- 在编译完后，发现target目录中不存在webapp下的文件，这时候在这project structure 下的modules中web Resource Directories下， 修改webapp文件夹定位到自己项目对应的位置 -->
+    <!-- 在编译完后，发现target目录中不存在webapp下的文件，这时候在这project structure
+    下的modules中web Resource Directories下， 修改webapp文件夹定位到自己项目对应的位置 -->
+
 
     <style>
         body {
@@ -67,6 +69,7 @@
 </head>
 <body>
 
+<!-- footer -->
 <footer class="blog-footer">
     <p>More template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a
             href="https://twitter.com/mdo">@mdo</a>.</p>
@@ -82,5 +85,7 @@
         https://github.com/firstxiahoumy/ssm-dm </a></p>
     <p><a href="#">Back to top</a></p>
 </footer>
+
 </body>
+
 </html>

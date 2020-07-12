@@ -5,25 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../../favicon.ico">
+    <link rel="icon" href="../../dm_net/favicon.ico">
     <!--  -->
     <title>forgot || Directory Management</title>
     <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.min.css" type="text/css">
-    <!-- 引入 bootstrap js文件 -->
-    <script href="../../../bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../../css/admin/" type="text/css">
-    <!-- 自定义js -->
-    <script src="../../../js/admin/" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <!-- jquery -->
-    <script src="../../../jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap js文件 -->
+    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 自己定义css -->
+    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <!-- 自定义js -->
+    <script src="../../dm_net/js/admin/" type="text/javascript"></script>
+
     <!-- 网络问件 -->
-    <!-- 网络文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>--%>
 
     <style type="text/css">
+        /**
+       *check code
+       */
+        #msg {
+            width: 100%;
+            line-height: 40px;
+            font-size: 14px;
+            text-align: center;
+        }
         /*
         * Footer
          */
@@ -62,31 +71,30 @@
                     <form action="${pageContext.request.contextPath}/forgot" role="form" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email/tel" style="background-color: #aaa999; color: #000000;" />
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="uEmail" value="${uEmail}" placeholder="Email/tel" style="background-color: #aaa999; color: #000000;" />
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password:</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" style="background-color: #aaa999; color: #000000;" />
+                            <label for="exampleInputPassword1">new Password:</label>
+                            <input type="password" class="form-control" name="uPwd" value="${uPwd}" id="exampleInputPassword1" style="background-color: #aaa999; color: #000000;" />
 
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">Check code</label>
-                            <input type="text" id="exampleInputFile" style="background-color: #aaa999; color: #000000;" />
-                            <span style="margin-right: 10px ;float: right;"><em>返回</em> &nbsp <b><a href="${pageContext.request.contextPath}/toLogin">登录</a></b></span>
-
-
-                        </div>
+<%--                        <div class="form-group">--%>
+<%--                            <label for="exampleInputFile">Check code</label>--%>
+<%--                            <input type="text" id="exampleInputFile" style="background-color: #aaa999; color: #000000;" />--%>
+<%--                            <span style="margin-right: 10px ;float: right;"><em>返回</em> &nbsp <b><a href="${pageContext.request.contextPath}/toLogin">登录</a></b></span>--%>
+<%--                        </div>--%>
                         <div>
 
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default btn-primary">提交</button>
                         </div>
+
                     </form>
                 </div>
                 <div class="col-md-7 column">
                     <div id="" style="margin-top: 110px;">
-                        <img alt="back img" src="../../../img/user-login-back.jpg" width="100%" />
+                        <img alt="back img" src="../../dm_net/img/user-login-back.jpg" width="100%" />
                     </div>
                 </div>
             </div>
@@ -109,5 +117,7 @@
         https://github.com/firstxiahoumy/ssm-dm </a></p>
     <p><a href="#">Back to top</a></p>
 </footer>
+
+
 </body>
 </html>

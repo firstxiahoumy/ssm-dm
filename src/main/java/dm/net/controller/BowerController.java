@@ -28,4 +28,5 @@ public class BowerController {
     public  String  nc(){
         return "browse/nc";
     }
+
 }

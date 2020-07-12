@@ -14,6 +14,9 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
+
+
+
     <!-- 扫描service相关的bean -->
     <context:component-scan base-package="dm.net.service" />
 
@@ -28,6 +31,11 @@
     <bean id="UserServiceImpl" class="dm.net.service.Impl.UserServiceImpl">
         <property name="userMapper" ref="userMapper"/>
     </bean>
+    <bean id="UserDateServiceImpl" class="dm.net.service.Impl.UserDateServiceImpl">
+        <property name="userDateMapper" ref="userDateMapper"/>
+    </bean>
+
+
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -46,5 +54,19 @@
         <aop:pointcut id="txPointCut" expression="execution(* dm.net.dao.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
     </aop:config>
+
+    <!-- AOP 事务处理 开始 -->
+<!--    <aop:aspectj-autoproxy />-->
+<!--    <aop:config  proxy-target-class="true">-->
+<!--        <aop:pointcut expression="execution(* *dm.net.service..*(..))" id="transService"/>-->
+<!--        <aop:advisor pointcut-ref="transService" advice-ref="txAdvice" />-->
+<!--    </aop:config>-->
+<!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="ssm*"  propagation="REQUIRED" rollback-for="Exception"  />-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+    <!-- AOP 事务处理 结束 -->
+
 
 </beans>

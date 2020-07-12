@@ -131,6 +131,7 @@
                             <br />
                             <a href="https://gitee.com/summer_hou/ssm">https://gitee.com</a>
                             <br />
+                            <span>email</span>
                             <abbr title="email"></abbr>onexiahoumy@outlook.com
                         </address>
                         <button type="button" class="btn btn-default btn-block btn-primary"><a href="${pageContext.request.contextPath}/admin/toLogin" style="color: #111111;">登录</a></button>

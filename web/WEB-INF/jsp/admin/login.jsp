@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -131,6 +131,7 @@
                             <br />
                             <a href="https://gitee.com/summer_hou/ssm">https://gitee.com</a>
                             <br />
+                            <span>email</span>
                             <abbr title="email"></abbr>onexiahoumy@outlook.com
                         </address>
                         <button type="button" class="btn btn-default btn-block btn-primary"><a href="${pageContext.request.contextPath}/admin/toRegister" style="color: #111111;">注册</a></button>

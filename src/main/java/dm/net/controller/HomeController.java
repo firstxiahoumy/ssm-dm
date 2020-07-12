@@ -4,6 +4,9 @@ package dm.net.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * public controller
  */
@@ -18,6 +21,7 @@ public class HomeController {
     public String back(){
         return "redirect:/index.jsp";
     }
+
 
 
     /**
@@ -67,5 +71,16 @@ public class HomeController {
     public String txt(){
         return "public/txt";
     }
-
+    @RequestMapping("/media")
+    public String media(){
+        return "public/media";
+    }
+    @RequestMapping("/psd")
+    public String psd(){
+        return "public/psd";
+    }
+    @RequestMapping("/sql")
+    public String sql(){
+        return "public/sql";
+    }
 }

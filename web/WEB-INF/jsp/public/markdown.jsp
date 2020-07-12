@@ -1,33 +1,34 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../../favicon.ico">
+    <link rel="icon" href="../../dm_net/favicon.ico">
     <!--  -->
-    <title>markdown || Directory Management</title>
+    <title> || Directory Management</title>
     <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.min.css" type="text/css">
-    <!-- 引入 bootstrap js文件 -->
-    <script href="../../../bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../../css/admin/" type="text/css">
-    <!-- 自定义js -->
-    <script src="../../../js/admin/"  type="text/javascript"></script>
+    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <!-- jquery -->
-    <script src="../../../jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap js文件 -->
+    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 自己定义css -->
+    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <!-- 自定义js -->
+    <script src="../../dm_net/js/admin/"  type="text/javascript"></script>
+
     <!-- 网络文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
+    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>--%>
 
     <style>
         body {
             padding-top: 50px;
         }
 
-        ul li{
+        .bqul .bqli{
             display: inline;
             padding: 0 12px;
             line-height: 36px;
@@ -69,30 +70,39 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Directory Management</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/public/index">Directory Management</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <!-- <li><a href="#contact">Contact</a></li> -->
-                <li class="dropdown">
+                <li><a href="${pageContext.request.contextPath}/public/home">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/public/about">About</a></li>
+                <li><a href="${pageContext.request.contextPath}/welcome">oneself</a></li>
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         content
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">document</a></li>
-                        <li><a href="#">excel</a></li>
-                        <li><a href="#">ppt</a></li>
-                        <li><a href="">markdown</a></li>
-                        <li><a href="#">pdf</a></li>
-                        <li><a href="#">link</a></li>
-                        <li><a href="#">txt</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/document">document</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/excel">excel</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/ppt">ppt</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/markdown">markdown</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/pdf">pdf</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/link">link</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/txt">txt</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/sql">sql</a></li>
+                        <li><a href="${pageContext.request.contextPath}/public/media">media</a></li>
+                        <%--                        <li><a href="#">mp3</a></li>--%>
+                        <li><a href="${pageContext.request.contextPath}/public/psd">psd</a></li>
+                        <%--                        <li><a href="#">txt</a></li>--%>
+                        <%--                        <li><a href="#">txt</a></li>--%>
+                        <%--                        <li><a href="#">txt</a></li>--%>
+                        <%--                        <li><a href="#">txt</a></li>--%>
+                        <%--                        <li><a href="#">txt</a></li>--%>
                     </ul>
                 </li>
             </ul>
-            <!--向左对齐-->
+            <!--向右对齐-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -126,21 +136,23 @@
         </div>
     </div>
 </nav>
+<!-- content -->
 <div id="qmenu">
-    <ul class="inline unstyled form-inline ml" style="list-style-type: none;">
-        <li><a href="">新闻资讯</a></li>
-        <li><a href="">体育竞技</a></li>
-        <li><a href="">娱乐八卦</a></li>
-        <li><a href="">前沿科技</a></li>
-        <li><a href="">环球财经</a></li>
-        <li><a href="">天气预报</a></li>
-        <li><a href="">房产家居</a></li>
-        <li><a href="">网络游戏</a></li>
-        <li><a href="">金融咨询</a></li>
-        <li><a href="">娱乐周边</a></li>
+    <ul class="inline unstyled form-inline bqul"  style="list-style-type: none;">
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">新闻资讯</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">体育竞技</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">娱乐八卦</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">前沿科技</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">环球财经</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">天气预报</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">房产家居</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">网络游戏</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">金融咨询</a></li>
+        <li class="bqli"><a href="${pageContext.request.contextPath}/">娱乐周边</a></li>
     </ul>
 
 </div>
+<!-- footer -->
 <footer class="blog-footer">
     <p>More template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a
             href="https://twitter.com/mdo">@mdo</a>.</p>

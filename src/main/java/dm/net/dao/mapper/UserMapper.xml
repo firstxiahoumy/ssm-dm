@@ -3,48 +3,72 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dm.net.dao.UserMapper">
+<!--    &lt;!&ndash; type指向javabean类，id可自定义 &ndash;&gt;-->
+<!--    <resultMap id="BaseResultMap" type="com.zout.entity.Admin" >-->
+<!--        <id column="aid" property="aid" jdbcType="INTEGER" />-->
+<!--        &lt;!&ndash; property对应实体类的属性名称，column为数据库字段名 &ndash;&gt;-->
+<!--        <result column="a_pid" property="aPid" jdbcType="INTEGER" />-->
+<!--        <result column="a_username" property="aUsername" jdbcType="VARCHAR" />-->
+<!--        <result column="a_password" property="aPassword" jdbcType="VARCHAR" />-->
+<!--        <result column="a_real_name" property="aRealName" jdbcType="VARCHAR" />-->
+<!--        <result column="a_phone" property="aPhone" jdbcType="VARCHAR" />-->
+<!--        <result column="a_role" property="aRole" jdbcType="VARCHAR" />-->
+<!--        <result column="a_icon" property="aIcon" jdbcType="VARCHAR" />-->
+<!--        <result column="a_login_time" property="aLoginTime" jdbcType="TIMESTAMP" />-->
+<!--        <result column="a_create_time" property="aCreateTime" jdbcType="TIMESTAMP" />-->
+<!--        <result column="a_update_time" property="aUpdateTime" jdbcType="TIMESTAMP" />-->
+<!--        <result column="a_comment" property="aComment" jdbcType="VARCHAR" />-->
+<!--    </resultMap>-->
+
     <!--    就是mybatis中的所有查询，都必须返回resultType或者resultMap的值，否则就会报如上错误的-->
     <!--    A query was run and no Result Maps were found for the Mapped Statement-->
 
-    <!-- 登录 -->
+    <select id="checkLogin" resultType="Users" parameterType="String">
+        select uPwd from ssmdm.user
+ 		where uEmail = #{uEmail}
+    </select>
+    <!-- 登录 or `uTel` = #{userTel} -->
     <select id="login" resultType="Users" parameterType="Users">
  		select * from ssmdm.user
- 		where
+ 		where uEmail = #{uEmail} and uPwd = #{uPwd}
  	</select>
 
     <!-- 注册 -->
-    <select id="register" parameterType="Users">
+    <insert id="register" parameterType="Users">
  		insert into ssmdm.user
- 		()
+ 		(uEmail,uPwd,uTel,uName,uNum,uAge,uSex,uAdd)
  		values
- 		()
- 	</select>
+ 		(#{uEmail},#{uPwd},#{uTel},#{uName},#{uNum},#{uAge},#{uSex},#{uAdd})
+ 	</insert>
+    <select id="judge" resultType="Users" parameterType="String">
+        select * from ssmdm.user where uEmail = #{uEmail};
+    </select>
 
-    <!-- 忘记密码 -->
+    <!-- 忘记密码 or `uTel` =#{userTel} -->
     <update id="forgot" parameterType="Users">
         update ssmdm.user
-        SET
-        where
+        SET uPwd = #{uPwd}
+        where uEmail = #{uEmail}
     </update>
 
     <!-- 根据id注销 -->
     <delete id="logout" parameterType="int">
         delete from ssmdm.user
-        where
+        where uEmail = #{uEmail}
     </delete>
 
     <!-- 更改个人信息 -->
-    <update id="update" parameterType="Users">
+    <update id="modify" parameterType="int">
         update ssmdm.user
-        set
-        where
+        set uEmail = #{uEmail},uPwd = #{uPwd},uTel = #{uTel},uName = #{uName},uNum = #{uNum},uAge = #{uAge},uSex = #{uSex},uAdd = #{uAdd}
+        where uId = #{uId}
     </update>
 
-    <!--  -->
-    <update id="avatar" parameterType="Users">
-        update ssmdm.user
-        set
-        where
-    </update>
+    <!--  or `uTel` = #{userTel} or `uId` = #{userId} -->
+<!--    <update id="avatar" parameterType="Users">-->
+<!--        update `ssmdm`.`user`-->
+<!--        set `uAvatar` = #{uAvatar}-->
+<!--        where `uEmail` = #{uEmail}-->
+<!--    </update>-->
 
 </mapper>

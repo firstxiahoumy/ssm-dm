@@ -13,53 +13,54 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     public void setAdminMapper(AdminMapper adminMapper) {
+        this.adminMapper=adminMapper;
     }
 
     public int addAdmin(Admin admin) {
-        return 0;
+        return this.adminMapper.addAdmin(admin);
     }
 
     public int addUser(Users users) {
-        return 0;
+        return this.adminMapper.addUser(users);
     }
 
     public int deleteAdminById(int id) {
-        return 0;
+        return this.adminMapper.deleteAdminById(id);
     }
 
     public int deleteUserById(int id) {
-        return 0;
+        return this.adminMapper.deleteUserById(id);
     }
 
     public int updateAdmin(Admin admin) {
-        return 0;
+        return this.adminMapper.updateAdmin(admin);
     }
 
     public int updateUser(Users users) {
-        return 0;
+        return this.adminMapper.updateUser(users);
     }
 
     public Admin queryAdminById(int id) {
-        return null;
+        return this.adminMapper.queryAdminById(id);
     }
 
     public Admin queryUserById(int id) {
-        return null;
+        return this.adminMapper.queryUserById(id);
     }
 
     public List<Admin> queryAllAdmin() {
-        return null;
+        return this.adminMapper.queryAllAdmin();
     }
 
     public List<Users> queryAllUser() {
-        return null;
+        return this.adminMapper.queryAllUser();
     }
 
     public Admin queryAdminByEmail(String userEmail) {
-        return null;
+        return this.adminMapper.queryAdminByEmail(userEmail);
     }
 
     public Admin queryUserByEmail(String userEmail) {
-        return null;
+        return this.adminMapper.queryUserByEmail(userEmail);
     }
 }

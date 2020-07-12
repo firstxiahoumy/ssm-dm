@@ -4,7 +4,7 @@
 
 1. First submission
 2. Second submission
-3. The third submission
+3. Third submission
 4. Fourth submission
 5. Fifth submission
 6. Sixth submission

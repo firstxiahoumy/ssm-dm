@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
     <!--DispatcherServlet-->
     <servlet>
+
         <servlet-name>DispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
@@ -19,25 +21,6 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>default</servlet-name>-->
-    <!--        <url-pattern>*.css</url-pattern>-->
-    <!--    </servlet-mapping>-->
-
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>default</servlet-name>-->
-    <!--        <url-pattern>*.png</url-pattern>-->
-    <!--    </servlet-mapping>-->
-
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>default</servlet-name>-->
-    <!--        <url-pattern>*.jpg</url-pattern>-->
-    <!--    </servlet-mapping>-->
-
-    <!--    <servlet-mapping>-->
-    <!--    <servlet-name>default</servlet-name>-->
-    <!--    <url-pattern>*.js</url-pattern>-->
-    <!--    </servlet-mapping>-->
 
     <!--encodingFilter-->
     <filter>
@@ -60,12 +43,68 @@
         <session-timeout>15</session-timeout>
     </session-config>
 
-    <!--    <servlet-mapping>-->
-    <!--         <servlet-name>default</servlet-name>-->
-    <!--         <url-pattern>*.js</url-pattern>-->
-    <!--         <url-pattern>*.css</url-pattern>-->
-    <!--         <url-pattern>/assets/*"</url-pattern>-->
-    <!--         <url-pattern>/images/*</url-pattern>-->
-    <!--     </servlet-mapping>-->
+
+    <!-- 有时候无法定位到首页可以配置这项 -->
+    <!-- 单一视图解析 -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <!-- html 可以不用配置 -->
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- captcha -->
+
+<!--    <servlet>-->
+<!--        <servlet-name>Kaptcha</servlet-name>-->
+<!--        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>-->
+<!--         captcha setting -->
+<!--        <init-param>-->
+<!--            <param-name>kaptcha.image.width</param-name>-->
+<!--            <param-value>200</param-value>-->
+<!--            <description>Width in pixels of the kaptcha image.</description>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>kaptcha.image.height</param-name>-->
+<!--            <param-value>50</param-value>-->
+<!--            <description>Height in pixels of the kaptcha image.</description>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>kaptcha.textproducer.char.length</param-name>-->
+<!--            <param-value>4</param-value>-->
+<!--            <description>The number of characters to display.</description>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>kaptcha.noise.impl</param-name>-->
+<!--            <param-value>com.google.code.kaptcha.impl.NoNoise</param-value>-->
+<!--            <description>The noise producer.</description>-->
+<!--        </init-param>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>Kaptcha</servlet-name>-->
+<!--        <url-pattern>/kaptcha.jpg</url-pattern>-->
+<!--    </servlet-mapping>&ndash;&gt;-->
+<!--    &lt;!&ndash; 设置上下文监听器 &ndash;&gt;-->
+<!--    -->
+<!--      <listener>-->
+<!--        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+<!--      </listener>-->
+<!--      -->
+<!--      &lt;!&ndash; 设置日志打印 &ndash;&gt;-->
+<!--    -->
+<!--      <context-param>-->
+<!--        <param-name>log4jConfigLocation</param-name>-->
+<!--        <param-value>classpath:log4j.properties</param-value>-->
+<!--      </context-param>-->
+<!--      -->
+<!--      <context-param>-->
+<!--        <param-name>webAppRootKey</param-name>-->
+<!--        <param-value>SSM.root</param-value>-->
+<!--      </context-param>-->
+<!--      -->
+<!--      <listener>-->
+<!--        <listener-class>-->
+<!--    org.springframework.web.util.Log4jConfigListener-->
+<!--    </listener-class>-->
+<!--      </listener>-->
 
 </web-app>
