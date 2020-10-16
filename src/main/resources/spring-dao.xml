@@ -7,14 +7,23 @@
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 配置整合mybatis -->
-    <!-- 1.关联数据库文件 -->
-    <context:property-placeholder location="classpath:database.properties"/>
+    <!-- 1.配置整合mybatis -->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:database.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+<!--        <property name="order" value="1"/>-->
+    </bean>
 
-    <!-- 2.数据库连接池 -->
-    <!--数据库连接池
-        dbcp 半自动化操作 不能自动连接
-        c3p0 自动化操作（自动的加载配置文件 并且设置到对象里面）
+<!--    <context:property-placeholder location="classpath:database.properties" ignore-unresolvable="true"/>-->
+
+    <!-- 2. 数据库连接 -->
+    <!--        mysql 数据库连接池
+                dbcp 半自动化操作 不能自动连接
+                c3p0 自动化操作（自动的加载配置文件 并且设置到对象里面）
     -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!-- 配置连接池属性 -->
@@ -38,11 +47,26 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
-        <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+        <!-- 配置MyBatis全局配置文件:mybatis-config.xml -->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
         <!-- **mapper接口文件和**mapper.xml在同一包下不用配置这项 -->
         <!--映射xml文件，mapper是本人创建的文件夹，根据自己需求改动-->
         <property name="mapperLocations" value="classpath:dm/net/dao/mapper/*.xml"/>
+
+<!--        https://blog.csdn.net/qq_41379337/article/details/94453647-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <props>
+                            <prop key="helperDialect">mysql</prop>
+                            <prop key="resonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- 4.配置扫描Dao接口包，动态实现Dao接口注入到spring容器中 -->
@@ -51,7 +75,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="dm.net.dao" />
+        <property name="basePackage" value="dm.net.dao"/>
     </bean>
 
 </beans>

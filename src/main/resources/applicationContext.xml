@@ -13,6 +13,10 @@
     <import resource="spring-dao.xml"/>
     <import resource="spring-service.xml"/>
     <import resource="spring-mvc.xml"/>
+    <!-- 关联redis配置文件 -->
+    <import resource="spring-redis.xml"/>
+    <!-- 验证码 kaptcha -->
+    <import resource="spring-kaptcha.xml"/>
 
 
 </beans>

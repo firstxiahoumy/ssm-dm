@@ -1,0 +1,170 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:redis.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+    </bean>
+
+    <!-- redis连接池配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxWaitMillis" value="${redis.maxWait}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+        <property name="testOnReturn" value="${redis.testOnReturn}"/>
+    </bean>
+
+    <!-- redis连接工厂 -->
+    <!--spring-data-redis2.0以下的配置
+    https://blog.csdn.net/qidasheng2012/article/details/89337485
+    -->
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="database" value="${redis.dbIndex}"/>
+    </bean>
+
+
+
+
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+<!--        spring-data-redis2.0以下的配置-->
+        <property name="connectionFactory" ref="connectionFactory"/>
+
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+        </property>
+    </bean>
+
+    <!-- 缓存拦截器配置 -->
+    <bean id="methodCacheInterceptor" class="dm.net.interceptor.MethodCacheInterceptor">
+        <property name="redisUtil" ref="redisUtil"/>
+        <property name="defaultCacheExpireTime" value="${defaultCacheExpireTime}"/>
+        <!-- 禁用缓存的类名列表 -->
+        <property name="targetNamesList">
+            <list>
+                <value/>
+            </list>
+        </property>
+
+        <!-- 禁用缓存的方法名列表 -->
+        <property name="methodNamesList">
+            <list>
+                <value/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="redisUtil" class="dm.net.util.redis.RedisUtil">
+        <property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+
+    <!--配置切面拦截方法 -->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="controllerMethodPointcut" expression="execution(* dm.net.service.Impl.*.*(..))"/>
+        <aop:advisor advice-ref="methodCacheInterceptor" pointcut-ref="controllerMethodPointcut"/>
+    </aop:config>
+
+
+
+
+
+
+
+
+<!--    &lt;!&ndash;设置jedisPool链接池的配置&ndash;&gt;-->
+<!--    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">-->
+<!--        <property name="maxTotal" value="${redis.maxTotal}"/>-->
+<!--        <property name="maxIdle" value="${redis.maxIdle}"/>-->
+<!--        <property name="maxWaitMillis" value="${redis.maxWait}"/>-->
+<!--        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>-->
+<!--        <property name="testOnReturn" value="${redis.testOnReturn}"/>-->
+<!--    </bean>-->
+<!--    &lt;!&ndash;redis链接密码&ndash;&gt;-->
+<!--    <bean id="redisPassword" class="org.springframework.data.redis.connection.RedisPassword">-->
+<!--        <constructor-arg name="thePassword" value="${redis.password}"/>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;spring-data-redis2.0以上的配置&ndash;&gt;-->
+<!--    <bean id="redisStandaloneConfiguration" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration">-->
+<!--        <property name="hostName" value="${redis.host}"/>-->
+<!--        <property name="port" value="${redis.port}"/>-->
+<!--        <property name="password" ref="redisPassword" />-->
+<!--        <property name="database" value="${redis.dbIndex}"/>-->
+<!--    </bean>-->
+<!--    &lt;!&ndash;配置jedis链接工厂 spring-data-redis2.0中-->
+<!--        建议改为构造器传入一个RedisStandaloneConfiguration  单机-->
+<!--                            RedisSentinelConfiguration  主从复制-->
+<!--                            RedisClusterConfiguration  集群&ndash;&gt;-->
+<!--    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">-->
+<!--        &lt;!&ndash;注销掉的部分为spring-data-redis2.0以下的版本配置的方式&ndash;&gt;-->
+<!--        &lt;!&ndash;  <property name="hostName" value="${redis.host}"/>-->
+<!--          <property name="port" value="${redis.port}"/>-->
+<!--          <property name="poolConfig" ref="jedisPoolConfig"/>-->
+<!--          <property name="password" value="${redis.auth}" />-->
+<!--          <property name="database" value="${redis.dbIndex}"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;spring-data-redis2.0以上建议获取的方式&ndash;&gt;-->
+<!--        <constructor-arg name="standaloneConfig" ref="redisStandaloneConfiguration"/>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;手动设置 key  与 value的序列化方式&ndash;&gt;-->
+<!--    <bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>-->
+<!--    <bean id="valueSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>-->
+
+<!--    &lt;!&ndash;配置jedis模板  &ndash;&gt;-->
+<!--    <bean id = "redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">-->
+<!--        <property name="connectionFactory" ref="jedisConnectionFactory" />-->
+<!--        <property name="keySerializer" ref="keySerializer" />-->
+<!--        <property name="valueSerializer" ref="valueSerializer" />-->
+<!--        <property name="hashKeySerializer" ref="keySerializer" />-->
+<!--        <property name="hashValueSerializer" ref="valueSerializer" />-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;也可以StringRedisTemplate  专注于String的操作  &ndash;&gt;-->
+<!--    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">-->
+<!--        &lt;!&ndash;<property name="connectionFactory" ref="jedisConnectionFactory"></property>&ndash;&gt;-->
+<!--        &lt;!&ndash;在StringRedisTemplate与redisTemplate不同,可以直接造构造器中传入ConnectionFactory&ndash;&gt;-->
+<!--        <constructor-arg name="connectionFactory" ref="jedisConnectionFactory"/>-->
+<!--        <property name="keySerializer" ref="keySerializer" />-->
+<!--        <property name="valueSerializer" ref="valueSerializer" />-->
+<!--        <property name="hashKeySerializer" ref="keySerializer" />-->
+<!--        <property name="hashValueSerializer" ref="valueSerializer" />-->
+
+<!--    </bean>-->
+
+
+
+
+
+
+
+
+</beans>

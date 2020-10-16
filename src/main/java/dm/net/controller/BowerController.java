@@ -29,4 +29,16 @@ public class BowerController {
         return "browse/nc";
     }
 
+    /**
+     * 默认模板测试页面
+     *
+     * 特别注意
+     * 项目发布时需要注销
+     * @return
+     */
+    @RequestMapping("/def")
+    public String der(){
+        return "user/def";
+    }
+
 }

@@ -1,26 +1,28 @@
 package dm.net.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigInteger;
 import java.security.Timestamp;
 
 public class UserDate {
 
-    private Integer dId;
+    private BigInteger dId;
     private String  iEmail;
     private String  dLink;
     private String dTag;
     private String dAnn;
-    private BigInteger iTel;
+    private String iTel;
     private Timestamp iTime;
 //    private Date iTime
 
     public UserDate(){}
 
-    public Integer getdId() {
+    public BigInteger getdId() {
         return dId;
     }
 
-    public void setdId(Integer dId) {
+    public void setdId(BigInteger dId) {
         this.dId = dId;
     }
 
@@ -56,14 +58,15 @@ public class UserDate {
         this.dAnn = dAnn;
     }
 
-    public BigInteger getiTel() {
+    public String getiTel() {
         return iTel;
     }
 
-    public void setiTel(BigInteger iTel) {
+    public void setiTel(String iTel) {
         this.iTel = iTel;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     public Timestamp getiTime() {
         return iTime;
     }

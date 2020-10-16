@@ -5,12 +5,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class MyInterceptor implements HandlerInterceptor {
 
 
     /**
+     * 在controller调用之前先拦截判断请求
      * user interceptor
      * @param request
      * @param response
@@ -20,7 +20,44 @@ public class MyInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-//        // 在拦截点执行前拦截，如果返回true则不执行拦截点后的操作（拦截成功）
+
+
+        String uri = request.getRequestURI();
+
+        ModelAndView modelAndView = new ModelAndView();
+//        try {
+            //判断当前请求地址是否登录地址
+            if (uri.contains("Login") || uri.contains("login")) {
+                //登录请求，直接放行
+                return true;
+
+            } else {
+                // 判断是否为管理员用户
+                if (uri.contains("admin") || uri.contains("system")) {
+                    System.out.println("您当前为普通用户，无法跳转");
+                    modelAndView.addObject("results", "页面不存在，无法跳转");
+                    response.sendRedirect(request.getContextPath()+"/x401");
+
+                }else {
+                    //判断用户是否登录
+                    if (request.getSession().getAttribute("user") != null) {
+                        //说明已经登录，放行
+                        return true;
+
+                    }else {
+                        //没有登录，跳转到登录界面
+                        response.sendRedirect(request.getContextPath() + "/toLogin");
+                    }
+
+                }
+            }
+//        }catch (){
+//
+//        }
+        //默认拦截
+        return false;
+
+        //        // 在拦截点执行前拦截，如果返回true则不执行拦截点后的操作（拦截成功）
 //        // 返回false则不执行拦截
 //        HttpSession session = request.getSession();
 //        //String uri = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
@@ -61,39 +98,6 @@ public class MyInterceptor implements HandlerInterceptor {
 //        }
 //        return flag;
 
-
-        String uri = request.getRequestURI();
-
-        ModelAndView modelAndView = new ModelAndView();
-        //判断当前请求地址是否登录地址
-        if (uri.contains("Login") || uri.contains("login")) {
-            //登录请求，直接放行
-            return true;
-
-        } else {
-            // 判断是否为管理员用户
-            if (uri.contains("admin") || uri.contains("system")) {
-                System.out.println("您当前为用户，无法跳转");
-                modelAndView.setViewName("/return");
-                modelAndView.addObject("results", "您当前为用户，无法跳转");
-
-
-            } else {
-                //判断用户是否登录
-                if (request.getSession().getAttribute("users") != null) {
-                    //说明已经登录，放行
-                    return true;
-
-                }else {
-                    //没有登录，跳转到登录界面
-                    response.sendRedirect(request.getContextPath() + "/toLogin");
-                }
-
-            }
-        }
-
-        //默认拦截
-        return false;
     }
 
 
@@ -110,6 +114,14 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object obj, ModelAndView modelAndView) throws Exception {
         // 在处理过程中，执行拦截
+
+        String uri = response.toString();
+        if (uri == null){
+            response.sendRedirect(request.getContextPath()+"/x404");
+        }
+//        else {
+//            response.sendRedirect(request.getContextPath()+"/x404");
+//        }
 
     }
 

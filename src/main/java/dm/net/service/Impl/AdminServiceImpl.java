@@ -9,7 +9,9 @@ import java.util.List;
 
 
 public class AdminServiceImpl implements AdminService {
-
+    /**
+     *
+     */
     private AdminMapper adminMapper;
 
     public void setAdminMapper(AdminMapper adminMapper) {
@@ -62,5 +64,46 @@ public class AdminServiceImpl implements AdminService {
 
     public Admin queryUserByEmail(String userEmail) {
         return this.adminMapper.queryUserByEmail(userEmail);
+    }
+
+
+    /**
+     * login
+     *
+     * @param admin
+     * @return
+     */
+    public Admin login(Admin admin) {
+        return adminMapper.login(admin);
+    }
+
+    /**
+     * register
+     *
+     * @param admin
+     * @return
+     */
+    public Integer register(Admin admin) {
+        return adminMapper.register(admin);
+    }
+
+    /**
+     * checkEmail(register)
+     *
+     * @param email
+     * @return
+     */
+    public List<Admin> checkEmail(String email) {
+        return adminMapper.checkEmail(email);
+    }
+
+    /**
+     * forgot
+     *
+     * @param admin
+     * @return
+     */
+    public int forgot(Admin admin) {
+        return adminMapper.forgot(admin);
     }
 }

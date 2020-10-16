@@ -5,19 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../../favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
     <title> || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
+
     <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">--%>
     <!-- 自定义js $nbsp; -->
-    <script src="../../dm_net/js/admin/"  type="text/javascript"></script>
+<%--    <script src="${pageContext.request.contextPath}/js/admin/"  type="text/javascript"></script>--%>
     <!-- 网络文件
     <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
     <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>--%>

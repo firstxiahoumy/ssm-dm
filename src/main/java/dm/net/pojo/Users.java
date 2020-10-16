@@ -1,13 +1,19 @@
 package dm.net.pojo;
 
-
-
-
+import java.awt.image.ImageFilter;
+import java.io.Serializable;
 import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
 
-public class Users {
+public class Users implements Serializable {
 
+    /**
+     * https://www.cnblogs.com/Lyn4ever/p/11045758.html
+     * DefaultSerializer requires a Serializable payload but received an object of type [dm.net.pojo.Users]
+     * public class xxx implements Serializable
+     */
     private Integer uId;
     private String uEmail;
     private String uPwd;
@@ -16,21 +22,27 @@ public class Users {
     private BigInteger uNum;
     private int uAge;
     private String uSex;
-//    private ImageFilter uAvatar;
+    private String pro;
+    private byte[] uAvatar;
     private String uAdd;
-    private Date uTime;
+    private Timestamp uTime;
 
     public Users(){
 
     }
 
-    public int getuId() {
+
+    public Integer getuId() {
         return uId;
     }
 
-    public void setuId(int uId) {
+    public void setuId(Integer uId) {
         this.uId = uId;
     }
+//
+//    public void setuId(int uId) {
+//        this.uId = uId;
+//    }
 
     public String getuEmail() {
         return uEmail;
@@ -96,19 +108,67 @@ public class Users {
         this.uAdd = uAdd;
     }
 
-//    public ImageFilter getuAvatar() {
-//        return uAvatar;
-//    }
-//
-//    public void setuAvatar(ImageFilter uAvatar) {
-//        this.uAvatar = uAvatar;
-//    }
+    public byte[] getuAvatar() {
+        return uAvatar;
+    }
 
-    public Date getuTime() {
+    public void setuAvatar(byte[] uAvatar) {
+        this.uAvatar = uAvatar;
+    }
+
+    public Timestamp getuTime() {
         return uTime;
     }
 
-    public void setuTime(Date uTime) {
+    public void setuTime(Timestamp uTime) {
+        this.uTime = uTime;
+    }
+
+
+
+    public String getPro() {
+        return pro;
+    }
+
+    public void setPro(String pro) {
+        this.pro = pro;
+    }
+
+
+
+
+    public String toString() {
+
+        return "Users{" +
+                "uId=" + uId +
+                ", uEmail='" + uEmail + '\'' +
+                ", uPwd='" + uPwd + '\'' +
+                ", uTel=" + uTel +
+                ", uName='" + uName + '\'' +
+                ", uNum=" + uNum +
+                ", uAge=" + uAge +
+                ", uSex='" + uSex + '\'' +
+                ", pro='" + pro + '\'' +
+                ", uAvatar=" + Arrays.toString(uAvatar) +
+                ", uAdd='" + uAdd + '\'' +
+                ", uTime=" + uTime +
+                '}';
+    }
+
+    public Users(Integer uId, String uEmail, String uPwd,
+                 BigInteger uTel, String uName, BigInteger uNum, int uAge,
+                 String uSex, String pro, byte[] uAvatar, String uAdd, Timestamp uTime) {
+        this.uId = uId;
+        this.uEmail = uEmail;
+        this.uPwd = uPwd;
+        this.uTel = uTel;
+        this.uName = uName;
+        this.uNum = uNum;
+        this.uAge = uAge;
+        this.uSex = uSex;
+        this.pro = pro;
+        this.uAvatar = uAvatar;
+        this.uAdd = uAdd;
         this.uTime = uTime;
     }
 }

@@ -5,19 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../dm_net/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
-    <title>record || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <title>uploadRecord || Directory Management</title>
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css"
+          type="text/css">
+
     <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">--%>
     <!-- 自定义js -->
-    <script src="../../dm_net/js/admin/" type="text/javascript"></script>
+    <%--    <script src="${pageContext.request.contextPath}/js/admin/" type="text/javascript"></script>--%>
 
     <!-- 网络文件 -->
     <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
@@ -123,13 +125,13 @@
                 <a href="#">setting</a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${uEmail}help<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.uEmail}<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/public/about">about</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/update">oneself</a>
+                        <a href="${pageContext.request.contextPath}/oneself">oneself</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/toLogin">use other</a>
@@ -165,7 +167,7 @@
         <input type="hidden" name="dId" value="${userDate.dId}">
         <div class="form-group">
             <label>邮箱:</label>
-            <input type="email" name="iEmail" value="${userDate.iEmail}" class="form-control" required>
+            <input type="email" name="iEmail" value="${userDate.iEmail}" class="form-control" required readonly>
         </div>
         <div class="form-group">
             <label>链接:</label>
@@ -188,7 +190,7 @@
         <%--            <input type="date" name="iTime" value="${userDate.iTime}" class="form-control" required>--%>
         <%--        </div>--%>
         <div class="form-group">
-            <input type="submit" value="修改" class="form-control">
+            <input type="submit" value="修改" class="form-control btn-default btn-primary">
         </div>
     </form>
 

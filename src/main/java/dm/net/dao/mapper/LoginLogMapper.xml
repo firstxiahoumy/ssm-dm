@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dm.net.dao.LoginLogMapper">
+    <insert id="addLog" parameterType="LoginLog">
+        insert into ssmdm.userlog(user,loginWay,location,state,ip,sysName)
+        values (#{user},#{loginWay},#{location},#{state},#{ip},#{sysName})
+    </insert>
+    <delete id="deleteLogById" parameterType="int">
+        delete from ssmdm.userlog where id = #{id}
+    </delete>
+    <select id="queryLogById" resultType="LoginLog">
+        select *from ssmdm.userlog where id = #{id}
+    </select>
+    <select id="queryAllLog" resultType="LoginLog" parameterType="String">
+        select * from ssmdm.userlog
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="finds" resultType="LoginLog">
+		SELECT
+			id,
+			countryname,
+			countrycode
+		FROM
+			ssmdm.userlog
+	</select>
+
+    <!-- 查询博客数量 -->
+    <select id="counts" resultType="long">
+		SELECT
+			count(*)
+		FROM
+			ssmdm.userlog
+	</select>
+
+
+</mapper>

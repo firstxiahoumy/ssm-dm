@@ -1,8 +1,11 @@
 package dm.net.dao;
 
+import dm.net.pojo.ResultObj;
 import dm.net.pojo.Users;
 
-import java.awt.*;
+import java.awt.image.ImageFilter;
+import java.util.List;
+
 
 public interface UserMapper {
     //这里的接口方法名必须和中mapper中的id相同，不然运行的时候会报错
@@ -13,6 +16,11 @@ public interface UserMapper {
 
     int logout(Users users);
     int modify(Users users);
-    String judge(String uEmail);
-//    Image avatar(Users users);
+    List<Users> judge(String uEmail);
+
+    int avatar(Users users);
+    int pro(Users pro);
+
+    Users refresh (Users users);
+
 }

@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dm.net.dao.UserDateMapper">
+
     <insert id="addUerDate" parameterType="UserDate">
         insert into ssmdm.userdate(iEmail, dLink, dTag, dAnn, iTel)
         values (#{iEmail},#{dLink},#{dTag},#{dAnn},#{iTel})
@@ -19,12 +20,12 @@
         select *from ssmdm.userdate where dId = #{dId}
     </select>
     <select id="queryAllUserDate" resultType="UserDate">
-        select * from ssmdm.userdate
+        select * from ssmdm.userdate where iEmail=#{iEmail}
     </select>
     <select id="queryUserDateByAnn" resultType="UserDate" parameterType="String">
         select *from ssmdm.userdate where dAnn LIKE CONCAT('%',#{dAnn},'%')
     </select>
-    <select id="queryByTag" resultType="String" parameterType="UserDate">
+    <select id="queryByTag" resultType="UserDate" parameterType="String">
         select *from ssmdm.userdate where dTag LIKE CONCAT('%',#{dTag},'%')
     </select>
 </mapper>

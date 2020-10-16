@@ -1,18 +1,14 @@
 package dm.net.exception;
 
 public class MyException extends Exception {
-    // 异常信息
-    private String message;
-
-    public MyException() {
-        super();
-    }
-
-    public MyException(String message) {
-        super();
+    //异常信息
+    public String message;
+    public MyException(String message){
+        super(message);
         this.message = message;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
@@ -20,5 +16,4 @@ public class MyException extends Exception {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }

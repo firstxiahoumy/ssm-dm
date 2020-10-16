@@ -45,7 +45,7 @@ public interface UserDateService {
      * 查询全部,返回list集合
      * @return
      */
-    List<UserDate> queryAllUserDate();
+    List<UserDate> queryAllUserDate(String iEmail);
 
 
     /**
@@ -62,5 +62,7 @@ public interface UserDateService {
      * @return
      */
     List<UserDate> queryByTag(String tag);
+
+
 
 }

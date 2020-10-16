@@ -12,7 +12,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <!--一定要注意:我们这里加载的是总的配置文件，之前被这里坑了！-->
+            <!--一定要注意:我们这里加载的是总的配置文件！-->
             <param-value>classpath:applicationContext.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -43,68 +43,28 @@
         <session-timeout>15</session-timeout>
     </session-config>
 
-
     <!-- 有时候无法定位到首页可以配置这项 -->
-    <!-- 单一视图解析 -->
+    <!-- 单一视图解析下任选其一 -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        <!-- html 可以不用配置 -->
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+<!--    &lt;!&ndash; 404 页面配置  &ndash;&gt;-->
+<!--    &lt;!&ndash; 不建议如此配置 &ndash;&gt;-->
+<!--    <error-page>-->
+<!--        <error-code>404</error-code>-->
+<!--        <location>/WEB-INF/jsp/error/404.jsp</location>-->
+<!--    </error-page>-->
+<!--    &lt;!&ndash; 500 页面配置  &ndash;&gt;-->
+<!--    &lt;!&ndash; 不建议如此配置 &ndash;&gt;-->
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/WEB-INF/jsp/error/500.jsp</location>-->
+<!--    </error-page>-->
 
     <!-- captcha -->
 
-<!--    <servlet>-->
-<!--        <servlet-name>Kaptcha</servlet-name>-->
-<!--        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>-->
-<!--         captcha setting -->
-<!--        <init-param>-->
-<!--            <param-name>kaptcha.image.width</param-name>-->
-<!--            <param-value>200</param-value>-->
-<!--            <description>Width in pixels of the kaptcha image.</description>-->
-<!--        </init-param>-->
-<!--        <init-param>-->
-<!--            <param-name>kaptcha.image.height</param-name>-->
-<!--            <param-value>50</param-value>-->
-<!--            <description>Height in pixels of the kaptcha image.</description>-->
-<!--        </init-param>-->
-<!--        <init-param>-->
-<!--            <param-name>kaptcha.textproducer.char.length</param-name>-->
-<!--            <param-value>4</param-value>-->
-<!--            <description>The number of characters to display.</description>-->
-<!--        </init-param>-->
-<!--        <init-param>-->
-<!--            <param-name>kaptcha.noise.impl</param-name>-->
-<!--            <param-value>com.google.code.kaptcha.impl.NoNoise</param-value>-->
-<!--            <description>The noise producer.</description>-->
-<!--        </init-param>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>Kaptcha</servlet-name>-->
-<!--        <url-pattern>/kaptcha.jpg</url-pattern>-->
-<!--    </servlet-mapping>&ndash;&gt;-->
-<!--    &lt;!&ndash; 设置上下文监听器 &ndash;&gt;-->
-<!--    -->
-<!--      <listener>-->
-<!--        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-<!--      </listener>-->
-<!--      -->
-<!--      &lt;!&ndash; 设置日志打印 &ndash;&gt;-->
-<!--    -->
-<!--      <context-param>-->
-<!--        <param-name>log4jConfigLocation</param-name>-->
-<!--        <param-value>classpath:log4j.properties</param-value>-->
-<!--      </context-param>-->
-<!--      -->
-<!--      <context-param>-->
-<!--        <param-name>webAppRootKey</param-name>-->
-<!--        <param-value>SSM.root</param-value>-->
-<!--      </context-param>-->
-<!--      -->
-<!--      <listener>-->
-<!--        <listener-class>-->
-<!--    org.springframework.web.util.Log4jConfigListener-->
-<!--    </listener-class>-->
-<!--      </listener>-->
+
+
 
 </web-app>

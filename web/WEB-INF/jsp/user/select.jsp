@@ -6,19 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../dm_net/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
-    <title>query || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <title>select || Directory Management</title>
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css"
+          type="text/css">
+
     <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">--%>
     <!-- 自定义js -->
-    <script src="../../dm_net/js/admin/" type="text/javascript"></script>
+    <%--    <script src="${pageContext.request.contextPath}/js/admin/" type="text/javascript"></script>--%>
 
     <!-- 网络文件 -->
     <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
@@ -88,8 +90,9 @@
             <li>
                 <a href="${pageContext.request.contextPath}/public/index">public</a>
             </li>
-            <li class="dropdownb ">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">contentList<strong class="caret"></strong></a>
+            <li class="dropdownb active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">contentList<strong
+                        class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/install">install</a>
@@ -112,9 +115,9 @@
                 </ul>
             </li>
         </ul>
-        <form action="${pageContext.request.contextPath}/select" class="navbar-form navbar-left active" role="search">
+        <form action="${pageContext.request.contextPath}/select" class="navbar-form navbar-left" role="search">
             <div class="form-group">
-                <input type="text" class="form-control"/>
+                <input type="text" class="form-control" placeholder="搜索公共资源池"/>
             </div>
             <button type="submit" class="btn btn-default">search</button>
         </form>
@@ -123,13 +126,13 @@
                 <a href="#">setting</a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${uEmail}help<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.uEmail}<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/public/about">about</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/update">oneself</a>
+                        <a href="${pageContext.request.contextPath}/oneself">oneself</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/toLogin">use other</a>
@@ -150,22 +153,20 @@
 </nav>
 <!-- content -->
 <div class="container">
-    <div class="row">
-        <div class="page-header">
-            <div class="col-md-6 column">
-                <div class="page-header">
-                    <h1><small>为您查询到${number}条记录</small></h1>
-                    <span>${msg}</span>
-                </div>
-            </div>
-            <div class="col-md-6 column">
-                <a class="btn btn-primary " href="${pageContext.request.contextPath}/ret" style="float: right">返回</a>
-            </div>
+    <div class="row page-header">
+        <div class="col-md-6 column">
+            <h1>
+                <small>为您查询到包含该内容的(${number})条记录</small>
+                <small><span>${message}</span></small>
+            </h1>
+        </div>
+        <div class="col-md-6 column">
+            <a class="btn btn-primary " href="${pageContext.request.contextPath}/allRecord/${user.uEmail}" style="float: right">返回个人数据中心</a>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table>
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
                     <th>编号</th>
@@ -173,7 +174,7 @@
                     <th>链接</th>
                     <th>标签</th>
                     <th>注释</th>
-                    <th>电话</th>
+                    <th>回馈</th>
                     <th>时间</th>
                     <th>操作</th>
                 </tr>

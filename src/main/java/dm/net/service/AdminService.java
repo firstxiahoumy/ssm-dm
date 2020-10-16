@@ -7,6 +7,36 @@ import java.util.List;
 
 public interface AdminService {
     //管理员-用户操作层
+    /**
+     * login
+     *
+     * @param admin
+     * @return
+     */
+    Admin login(Admin admin);
+
+    /**
+     * register
+     *
+     * @param admin
+     * @return
+     */
+    Integer register(Admin admin);
+    /**
+     * checkEmail
+     *
+     * @param email
+     * @return
+     */
+    List<Admin> checkEmail(String email);
+    /**
+     * forgot
+     *
+     * @param admin
+     * @return
+     */
+    int forgot(Admin admin);
+
 
     //增加
     int addAdmin(Admin admin);
@@ -29,8 +59,9 @@ public interface AdminService {
     List<Users> queryAllUser();
 
     //搜索
-    Admin queryAdminByEmail(String userEmail);
-    Admin queryUserByEmail(String userEmail);
+    Admin queryAdminByEmail(String email);
+    Admin queryUserByEmail(String uEmail);
+
 
 
 }

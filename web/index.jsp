@@ -4,24 +4,27 @@
     <mate charset="UTF-8"></mate>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--  -->
-    <link rel="icon" href="dm.net/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
     <title>ssm-dm || Directory Management</title>
     <!-- 自定义css -->
-    <link rel="stylesheet" href="dm.net/css/bower/first_page.css" type="text/css">
-<%-- <!--   <link rel="stylesheet" href="css/browse_page.css" type="text/css">  -->--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bower/first_page.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css">  <!--   -->
     <!-- 自定义js -->
 <%--    <script type="text/javascript" src="js/"></script>--%>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="dm.net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
     <!-- jquery -->
-    <script type="text/javascript" src="dm.net/jquery/jquery-3.5.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery-3.4.1.min.js"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script type="text/javascript" src="dm.net/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
     <!-- 网络文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-    <!--  -->
+<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>--%>
+
+    <!--
     <style>
         /*
  * Globals
@@ -143,25 +146,6 @@
         }
 
 
-        /*
-          * Footer
-          */
-
-        .blog-footer {
-            padding: 40px 0;
-            color: #999;
-            text-align: center;
-            background-color: #1f2d3d;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .blog-footer p:last-child {
-            margin-bottom: 0;
-        }
-
-        .blog-nav-float {
-            float: right;
-        }
 
 
         /*
@@ -385,7 +369,7 @@
         }
 
 
-    </style>
+    </style>-->
 
 </head>
 <body>
@@ -414,7 +398,7 @@
                     edit the text, and add your own fullscreen background photo to make it your own.
                 </p>
                 <p>Project code address &nbsp;&nbsp;<a href="https://github.com/firstxiahoumy/ssm-dm">https://github.com/firstxiahoumy/ssm-dm</a> .</p>
-                <p>Reference code address &nbsp;<a href="https://gitee.com/gester/captcha/">https://gitee.com/gester/captcha</a>&nbsp; Slider verification code.</p>
+<%--                <p>Reference code address &nbsp;<a href="https://gitee.com/gester/captcha/">https://gitee.com/gester/captcha</a>&nbsp; Slider verification code.</p>--%>
                 <p class="lead">
                     <a href="${pageContext.request.contextPath}/browse/read" class="btn btn-lg btn-default">Browse more</a>
                 </p>
@@ -438,7 +422,7 @@
     </p>
     <p>Program source code <em> gitee </em><a href="https://gitee.com/summer_hou/ssm">
         https://gitee.com/summer_hou/ssm </a>or<em> github </em><a href="https://github.com/firstxiahoumy/ssm-dm">
-        https://github.com/firstxiahoumy/ssm-dm </a></p>
+        https://github.com/firstxiahoumy/ssm-dm </a> (License)</p>
     <p><a href="#">Back to top</a></p>
 </footer>
 </body>

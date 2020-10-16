@@ -58,17 +58,32 @@
     </delete>
 
     <!-- 更改个人信息 -->
-    <update id="modify" parameterType="int">
+    <update id="modify" parameterType="Users">
         update ssmdm.user
         set uEmail = #{uEmail},uPwd = #{uPwd},uTel = #{uTel},uName = #{uName},uNum = #{uNum},uAge = #{uAge},uSex = #{uSex},uAdd = #{uAdd}
         where uId = #{uId}
     </update>
 
     <!--  or `uTel` = #{userTel} or `uId` = #{userId} -->
-<!--    <update id="avatar" parameterType="Users">-->
-<!--        update `ssmdm`.`user`-->
-<!--        set `uAvatar` = #{uAvatar}-->
-<!--        where `uEmail` = #{uEmail}-->
-<!--    </update>-->
+    <update id="avatar" parameterType="Users" >
+        update `ssmdm`.`user`
+        set `uAvatar` = #{uAvatar}
+        where `uEmail` = #{uEmail}
+    </update>
+
+    <!--  test 图片上传 `uTel` = #{userTel} or `uId` = #{userId} -->
+    <update id="pro" parameterType="Users" >
+        update `ssmdm`.`user`
+        set `pro` = #{pro}
+        where `uEmail` = #{uEmail}
+    </update>
+
+
+    <select id="refresh" resultType="Users" parameterType="String">
+        select *from `ssmdm`.`user` where uEmail=#{uEmail}
+    </select>
+
+
+
 
 </mapper>

@@ -5,23 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../dm_net/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
     <title>HOME2 || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
-    <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css"
+          type="text/css">
+
     <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">--%>
     <!-- 自定义js -->
-    <script src="../../dm_net/js/admin/" type="text/javascript"></script>
+    <%--    <script src="${pageContext.request.contextPath}/js/admin/" type="text/javascript"></script>--%>
 
     <!-- 网络文件 -->
     <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
@@ -92,25 +90,27 @@
                 <a href="${pageContext.request.contextPath}/public/index">public</a>
             </li>
             <li class="dropdownb ">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">contentList<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">contentList<strong
+                        class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="${pageContext.request.contextPath}/install">install</a>
+                        <a href="${pageContext.request.contextPath}/install" aria-placeholder="install">install</a>
                     </li>
                     <li class="divider">
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/compress">compress</a>
+                        <a href="${pageContext.request.contextPath}/compress" aria-placeholder="compress">compress</a>
                     </li>
                     <li class="divider">
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/media">media</a>
+                        <a href="${pageContext.request.contextPath}/media" aria-placeholder="media">media</a>
                     </li>
                     <li class="divider">
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/directory">directory</a>
+                        <a href="${pageContext.request.contextPath}/directory"
+                           aria-placeholder="directory">directory</a>
                     </li>
                 </ul>
             </li>
@@ -126,13 +126,13 @@
                 <a href="#">setting</a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${uEmail}help<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.uEmail}<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/public/about">about</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/update">oneself</a>
+                        <a href="${pageContext.request.contextPath}/oneself">oneself</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/toLogin">use other</a>
@@ -158,14 +158,25 @@
     </div>
     <div class="row" style="text-align: center">
         <div class="col-md-3">
-            <a href="${pageContext.request.contextPath}/toAddRecord"><button class="btn btn-primary btn-default">增加记录</button></a>
+            <a href="${pageContext.request.contextPath}/toAddRecord">
+                <button class="btn btn-primary btn-default">增加记录</button>
+            </a>
         </div>
         <div class="col-md-3">
-            <a href="${pageContext.request.contextPath}/allRecord"><button class="btn btn-primary btn-default">所有记录</button></a>
+            <a href="${pageContext.request.contextPath}/allRecord/${user.uEmail}">
+                <button class="btn btn-primary btn-default">所有记录</button>
+            </a>
         </div>
-<%--        <div class="col-md-3">--%>
-<%--            <a href="${pageContext.request.contextPath}/toUpdateRecord"><button class="btn btn-primary btn-default">更新记录</button></a>--%>
-<%--        </div>--%>
+        <div class="col-md-3">
+            <a href="${pageContext.request.contextPath}/loginLog">
+                <button class="btn btn-primary btn-default">登入日志</button>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="${pageContext.request.contextPath}/blogEditor">
+                <button class="btn btn-primary btn-default">编辑博客</button>
+            </a>
+        </div>
     </div>
 </div>
 <!-- footer -->

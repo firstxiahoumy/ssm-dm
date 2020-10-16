@@ -6,19 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../dm_net/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
     <title>install || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css"
+          type="text/css">
+
     <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">--%>
     <!-- 自定义js -->
-    <script src="../../dm_net/js/admin/" type="text/javascript"></script>
+    <%--    <script src="${pageContext.request.contextPath}/js/admin/" type="text/javascript"></script>--%>
 
     <!-- 网络文件 -->
     <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
@@ -93,7 +95,7 @@
                         class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="${pageContext.request.contextPath}/install">install</a>
+                        <a href="${pageContext.request.contextPath}/install" name="uTag" valu>install</a>
                     </li>
                     <li class="divider">
                     </li>
@@ -124,13 +126,13 @@
                 <a href="#">setting</a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${uEmail}help<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.uEmail}<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/public/about">about</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/update">oneself</a>
+                        <a href="${pageContext.request.contextPath}/oneself">oneself</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/toLogin">use other</a>
@@ -171,25 +173,25 @@
                     <th>链接</th>
                     <th>标签</th>
                     <th>注释</th>
-                    <th>电话</th>
+                    <th>回馈</th>
                     <th>时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <e:forEach var="userDate" items="${requestScope.get('list')}">
+                <e:forEach var="install" items="${requestScope.get('install')}">
                     <tr>
-                        <td>${userDate.dId}</td>
-                        <td>${userDate.iEmail}</td>
-                        <td>${userDate.dLink}</td>
-                        <td>${userDate.dTag}</td>
-                        <td>${userDate.dAnn}</td>
-                        <td>${userDate.iTel}</td>
-                        <td>${userDate.iTime}</td>
+                        <td>${install.dId}</td>
+                        <td>${install.iEmail}</td>
+                        <td>${install.dLink}</td>
+                        <td>${install.dTag}</td>
+                        <td>${install.dAnn}</td>
+                        <td>${install.iTel}</td>
+                        <td>${install.iTime}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/toUpdateRecord/${userDate.dId}">修改</a>
+                            <a href="${pageContext.request.contextPath}/toUpdateRecord/${install.dId}">修改</a>
                             &nbsp;|&nbsp;
-                            <a href="${pageContext.request.contextPath}/del/${userDate.dId}">删除</a>
+                            <a href="${pageContext.request.contextPath}/del/${install.dId}">删除</a>
                         </td>
                     </tr>
                 </e:forEach>

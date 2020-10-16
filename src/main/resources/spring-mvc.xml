@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context
-       https://www.springframework.org/schema/context/spring-context.xsd">
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 配置SpringMVC -->
     <!-- 1. 开启SpringMVC注解驱动 -->
@@ -27,7 +30,8 @@
     <context:component-scan base-package="dm.net.controller" />
 
     <!-- 5. 异常处理 -->
-<!--    <bean id="allExceptionHandler" class="dm.net.exception.AllExceptionHandler"></bean>-->
+<!--    <bean class="dm.net.exception.MyHandlerExceptionResolver"/>-->
+<!--    <bean id="exceptionHandler" class="dm.net.exception.ControllerException"></bean>-->
 
     <!-- 6. 配置拦截器interceptors -->
     <mvc:interceptors>
@@ -36,9 +40,38 @@
             <mvc:mapping path="/**"/>
             <!-- mvc:exclude-mapping是另外一种拦截，它可以在你后来的测试中对某个页面进行不拦截，这样就不用在
                 MyInterceptor的preHandler方法里面获取不拦截的请求uri地址了(优选) -->
+            <!-- home -->
+            <mvc:exclude-mapping path="/index*"/>
+            <mvc:exclude-mapping path="/favicon.ico"/>
+            <!--    放行用户注册登录找回密码-->
+            <!--    user-->
             <mvc:exclude-mapping path="/*Login*" />
             <mvc:exclude-mapping path="/*login*"/>
+            <mvc:exclude-mapping path="/*register*"/>
+            <mvc:exclude-mapping path="/*forgot"/>
+            <mvc:exclude-mapping path="/*Register*"/>
+            <mvc:exclude-mapping path="/*Forgot"/>
+            <!--    admin-->
+            <mvc:exclude-mapping path="/admin/*Login*" />
+            <mvc:exclude-mapping path="/admin/*login*"/>
+            <mvc:exclude-mapping path="/admin/*register*"/>
+            <mvc:exclude-mapping path="/admin/*forgot"/>
+            <mvc:exclude-mapping path="/admin/*Register*"/>
+            <mvc:exclude-mapping path="/admin/*Forgot"/>
+            <!--    admin 注册时 放行ajax验证用户唯一性的请求-->
+            <mvc:exclude-mapping path="/checkRegister"/>
+            <!--            -->
+            <mvc:exclude-mapping path="/listAllJson"/>
+            <!--    放行验证码请求 -->
+            <mvc:exclude-mapping path="/code"/>
+            <!--    用户注册时 放行ajax验证用户唯一性的请求 -->
+            <mvc:exclude-mapping path="/*judgeEmail*"/>
+            <!--    放行游客浏览页面-->
             <mvc:exclude-mapping path="/browse/**"/>
+            <!--    放行静态资源-->
+            <!--    最好将静态资源放在一个文件下-->
+            <mvc:exclude-mapping path="/static/**"/>
+
             <mvc:exclude-mapping path="/bootstrap/**"/>
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/img/**"/>
@@ -47,26 +80,34 @@
             <mvc:exclude-mapping path="/plugins/**"/>
             <mvc:exclude-mapping path="/admin/*login*"/>
             <mvc:exclude-mapping path="/admin/*Login*"/>
-            <bean class="dm.net.interceptor.MyInterceptor"></bean>
+            <!--    注入拦截器-->
+            <bean class="dm.net.interceptor.MyInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-<!--    &lt;!&ndash; 配置MultipartResolver，用于上传文件，使用spring的CommonsMultipartResolver &ndash;&gt;-->
-<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-<!--        <property name="maxUploadSize" value="5000000"/>-->
-<!--        <property name="defaultEncoding" value="UTF-8"/>-->
-<!--    </bean>-->
+    <!-- 配置MultipartResolver，用于上传文件，使用spring的CommonsMultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 20mb -->
+        <property name="maxUploadSize" value="30720"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+    <!-- 登录日志 -->
+    <!-- 扫描aspect注解 -->
+<!--    <context:component-scan base-package="dm.net.aspect"/>-->
+<!--    <aop:aspectj-autoproxy proxy-target-class="true" />-->
+    <!--    <bean id="logAspect" class="dm.net.aspect.LoginAspect" />-->
 
 
 
-    <!--    &lt;!&ndash;避免IE执行AJAX时，返回JSON出现下载文件 &ndash;&gt;-->
-    <!--    <bean id="mappingJacksonHttpMessageConverter"-->
-    <!--          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
-    <!--        <property name="supportedMediaTypes">-->
-    <!--            <list>-->
-    <!--                <value>text/html;charset=UTF-8</value>-->
-    <!--            </list>-->
-    <!--        </property>-->
-    <!--    </bean>-->
+
+<!--        &lt;!&ndash;避免IE执行AJAX时，返回JSON出现下载文件 &ndash;&gt;-->
+<!--        <bean id="mappingJacksonHttpMessageConverter"-->
+<!--              class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
+<!--            <property name="supportedMediaTypes">-->
+<!--                <list>-->
+<!--                    <value>text/html;charset=UTF-8</value>-->
+<!--                </list>-->
+<!--            </property>-->
+<!--        </bean>-->
     <!--    &lt;!&ndash; 启动SpringMVC的注解功能，完成请求和注解POJO的映射 &ndash;&gt;-->
     <!--    <bean-->
     <!--            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->

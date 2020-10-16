@@ -5,34 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../../favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!-- title -->
     <title> || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery-3.4.1.min.js"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
     <!-- 自己定义css
-<%--    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">--%>-->
+    <link rel="stylesheet" href="/css/admin/" type="text/css">-->
     <!-- 自定义js
-<%--    <script src="../../dm_net/js/admin/"  type="text/javascript"></script>--%>-->
+    <script src="/js/admin/"  type="text/javascript"></script>-->
     <!-- 网络文件
-    <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
-    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>--%>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     -->
 
     <!-- 在编译完后，发现target目录中不存在webapp下的文件，这时候在这project structure
     下的modules中web Resource Directories下， 修改webapp文件夹定位到自己项目对应的位置 -->
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../dm_net/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/ionicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/ionicons.min.css">
 <%--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--%>
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/dm-admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/dm-admin.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <style>
@@ -574,23 +576,23 @@
 </footer>
 
 <!-- jQuery -->
-<script src="../../dm_net/plugins/jquery/jquery.min.js" type="text/javascript"></script>
+<%--<script src="${pageContext.request.contextPath}/plugins/jquery/jquery.min.js" type="text/javascript"></script>--%>
 <!-- jQuery UI 1.11.4 -->
-<script src="../../dm_net/plugins/jQueryUI/jquery-ui.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js" type="text/javascript"></script>
 <%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>--%>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="../../dm_net/plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <!-- Morris.js charts
 <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>--%>
 <%--<script src="plugins/morris/morris.min.js"></script>--%>-->
 <!-- DM Web App -->
-<script src="../../dm_net/js/admin/dm-admin.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/admin/dm-admin.js" type="text/javascript"></script>
 <!-- DM for demo purposes -->
-<script src="../../dm_net/js/admin/demo.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/admin/demo.js" type="text/javascript"></script>
 </body>
 
 </html>

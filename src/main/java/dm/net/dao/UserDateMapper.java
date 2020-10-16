@@ -46,8 +46,9 @@ public interface UserDateMapper {
     /**
      * 查询全部,返回list集合
      * @return
+     * @param uEmail
      */
-    List<UserDate> queryAllUserDate();
+    List<UserDate> queryAllUserDate( @Param("iEmail") String uEmail);
 
 
     /**
@@ -63,4 +64,6 @@ public interface UserDateMapper {
      * @return
      */
     List<UserDate> queryByTag(@Param("dTag") String tag);
+
+
 }

@@ -8,6 +8,36 @@ import java.util.List;
 public interface AdminMapper {
     //管理员-用户操作层
 
+    /**
+     * login
+     *
+     * @param admin
+     * @return
+     */
+    Admin login(Admin admin);
+
+    /**
+     * register
+     *
+     * @param admin
+     * @return
+     */
+    Integer register(Admin admin);
+    /**
+     * checkEmail
+     *
+     * @param email
+     * @return
+     */
+    List<Admin> checkEmail(String email);
+    /**
+     * forgot
+     *
+     * @param admin
+     * @return
+     */
+    int forgot(Admin admin);
+
     //增加
     int addAdmin(Admin admin);
     int addUser(Users users);

@@ -1,24 +1,27 @@
 <%@ taglib prefix="e" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../dm_net/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
-    <title>record || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../dm_net/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <title>allRecord || Directory Management</title>
     <!-- jquery -->
-    <script src="../../dm_net/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 引入 bootstrap js文件 -->
-    <script src="../../dm_net/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css"
+          type="text/css">
+
     <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../dm_net/css/admin/" type="text/css">
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">--%>
     <!-- 自定义js -->
-    <script src="../../dm_net/js/admin/" type="text/javascript"></script>
+    <%--    <script src="${pageContext.request.contextPath}/js/admin/" type="text/javascript"></script>--%>
 
     <!-- 网络文件 -->
     <%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">--%>
@@ -123,13 +126,13 @@
                 <a href="#">setting</a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.uEmail}<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/public/about">about</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/update">oneself</a>
+                        <a href="${pageContext.request.contextPath}/oneself">oneself</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/toLogin">use other</a>
@@ -150,15 +153,18 @@
 </nav>
 <!-- content -->
 <div class="container">
+    <div class="row page-header">
+        <h1><small>record</small></h1>
+    </div>
     <div class="row">
         <div class="col-md-4 column">
             <a class="btn btn-primary" href="${pageContext.request.contextPath}/toAddRecord">新增记录</a>
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/allRecord">显示全部</a>
+            <a class="btn btn-primary" href="${pageContext.request.contextPath}/allRecord/${user.uEmail}">显示全部</a>
 
         </div>
         <div class="col-md-8 column">
             <form action="${pageContext.request.contextPath}/query" method="post" style="float: right;"  class="form-inline">
-                <span style="color:red;font-width: bold;">${error}</span>
+                <span style="color:red;font-width: bold;">${error}</span><span>${resMsg}</span>
                 <input type="text"  name="ann" class="form-control glyphicon glyphicon-search" placeholder="输入查询的名称"/>
                 <input type="submit" class="btn btn-primary glyphicon glyphicon-search" value="搜索"/>
 
@@ -175,7 +181,7 @@
                     <th>链接</th>
                     <th>标签</th>
                     <th>注释</th>
-                    <th>电话</th>
+                    <th>回馈</th>
                     <th>时间</th>
                     <th>操作</th>
                 </tr>
@@ -198,10 +204,20 @@
                         </tr>
                     </e:forEach>
                 </tbody>
+                <tfoot>
+                <tr>
+
+                </tr>
+
+                </tfoot>
             </table>
+
         </div>
     </div>
+    <div id="krryPage"></div>
 </div>
+<%--<jsp:include page="${pageContext.request.contextPath}/static/page/footer.jsp"/>--%>
+
 <!-- footer -->
 <footer class="blog-footer">
     <p>More template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a
@@ -218,5 +234,52 @@
         https://github.com/firstxiahoumy/ssm-dm </a></p>
     <p><a href="#">Back to top</a></p>
 </footer>
+<script type="text/javascript">
+
+    var krryAdminBlog = {
+        initPage:function(itemCount){
+            $("#krryPage").tzPage(itemCount, {
+                num_display_entries : 5, //主体页数
+                num_edge_entries : 4,//边缘页数
+                current_page : 0,//指明选中页码
+                items_per_page : 10, //每页显示多少条
+                prev_text : "上一页",
+                next_text : "下一页",
+                showGo:true,//显示
+                showSelect:false,
+                callback : function(pageNo, psize) {//会回传两个参数，第一个是当前页数，第二个是每页要显示的数量
+                    krryAdminBlog.loadData(pageNo,psize);
+                }
+            });
+        },
+        loadData:function(pageNo,pageSize){
+            pageNo++; //下一页
+            pageSize = 10; //每页都是显示10条
+            $.ajax({
+                type:"post",
+                url:basePath+"/index/loadData",
+                data:{pageNo:pageNo,pageSize:pageSize},
+                success:function(data){
+                    if(data){
+                        var html = "";
+                        var blogArr = data.clist;
+                        for(var i=0,len=blogArr.length;i < len;i++){
+                            var json = blogArr[i];
+                            html+= "<tr>"+
+                                "	<td><a class='t_avbiaoq' title='"+json.id+"'>"+json.id+"</a></td>"+
+                                "	<td><a class='t_avbiaoq' title='"+json.countryname+"'>"+json.countryname+"</a></td>"+
+                                "	<td><a class='t_avbiaoq' title='"+json.countrycode+"'>"+json.countrycode+"</a></td>"+
+                                "</tr>";
+                        }
+                        $("#tbody").html(html);
+                    }
+                }
+            });
+        }
+    };
+
+    krryAdminBlog.initPage($("#tbody").data("itemcount"));
+
+</script>
 </body>
 </html>

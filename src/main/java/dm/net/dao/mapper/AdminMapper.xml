@@ -3,11 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dm.net.dao.AdminMapper">
-    <!-- login -->
-<!--    <select id="aLogin"  resultType="Admin" parameterType="Admin">-->
-<!-- 		select * from ssmdm.admin-->
-<!-- 		where-->
-<!-- 	</select>-->
+    <!--
+    login
+    register(checkEmail)
+    forgot
+    -->
+<!--     login -->
+    <select id="login"  resultType="Admin" parameterType="Admin">
+ 		select * from ssmdm.admin
+ 		where email = #{eamil} and pwd = #{pwd}
+ 	</select>
+<!--    register-->
+    <insert id="register" parameterType="Admin">
+        insert into ssmdm.admin (email,pwd)
+        values (#{eamil},#{pwd})
+    </insert>
+    <!-- checkEmail -->
+    <select id="checkEmail" resultType="Admin" parameterType="String">
+        select *from ssmdm.admin where email = #{email}
+    </select>
+<!--    forgot-->
+    <update id="forgot" parameterType="Admin">
+        update ssmdm.admin
+        SET pwd = #{pwd}
+        where eamil = #{eamil}
+    </update>
+
 
     <!-- 添加 -->
     <!-- 管理员 -->
@@ -82,5 +103,7 @@
         select * from ssmdm.user
         where
     </select>
+
+
 
 </mapper>

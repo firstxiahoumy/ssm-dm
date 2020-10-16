@@ -21,6 +21,7 @@
     <context:component-scan base-package="dm.net.service" />
 
 
+
     <!-- 注入IOC -->
 
     <!--AdminServiceImpl注入到IOC容器中-->
@@ -33,6 +34,12 @@
     </bean>
     <bean id="UserDateServiceImpl" class="dm.net.service.Impl.UserDateServiceImpl">
         <property name="userDateMapper" ref="userDateMapper"/>
+    </bean>
+    <bean id="LoginLogServiceImpl" class="dm.net.service.Impl.LoginLogServiceImpl">
+        <property name="loginLogMapper" ref="loginLogMapper"/>
+    </bean>
+    <bean id="AdminLoginInForServiceImpl" class="dm.net.service.Impl.AdminLoginInForServiceImpl">
+        <property name="adminLoginInForMapper" ref="adminLoginInForMapper"/>
     </bean>
 
 
@@ -54,6 +61,13 @@
         <aop:pointcut id="txPointCut" expression="execution(* dm.net.dao.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
     </aop:config>
+
+    <!-- 登录日志 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <!-- 扫描aspect注解 -->
+    <context:component-scan base-package="dm.net.aspect"/>
+<!--    <bean id="logAspect" class="dm.net.aspect.LoginAspect" />-->
+
 
     <!-- AOP 事务处理 开始 -->
 <!--    <aop:aspectj-autoproxy />-->

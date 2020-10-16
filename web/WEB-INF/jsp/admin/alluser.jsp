@@ -6,17 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ico图片 -->
-    <link rel="icon" href="../../../favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico">
     <!--  -->
     <title>all || Directory Management</title>
-    <!-- 引入 bootstrap css文件 -->
-    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
     <!-- 引入 bootstrap js文件 -->
-    <script href="../../../bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- 自己定义css -->
-    <link rel="stylesheet" href="../../../css/admin/" type="text/css">
-    <!-- 自定义js -->
-    <script src="../../../js/admin/" type="text/javascript"></script>
+    <script href="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 引入 bootstrap css文件 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
+    <!-- 自己定义css
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/" type="text/css">-->
+    <!-- 自定义js
+    <script src="${pageContext.request.contextPath}/js/admin/" type="text/javascript"></script>-->
     <!-- jquery -->
     <script src="../../../jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <!-- 网络文件 -->

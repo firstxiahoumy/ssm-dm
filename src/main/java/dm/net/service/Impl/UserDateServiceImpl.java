@@ -1,6 +1,7 @@
 package dm.net.service.Impl;
 
 
+import com.github.pagehelper.PageHelper;
 import dm.net.dao.UserDateMapper;
 import dm.net.pojo.UserDate;
 import dm.net.service.UserDateService;
@@ -31,8 +32,8 @@ public class UserDateServiceImpl implements UserDateService {
         return this.userDateMapper.queryUserDateById(id);
     }
 
-    public List<UserDate> queryAllUserDate() {
-        return this.userDateMapper.queryAllUserDate();
+    public List<UserDate> queryAllUserDate(String uEmail) {
+        return this.userDateMapper.queryAllUserDate(uEmail);
     }
 
     public List<UserDate> queryUserDateByAnn(String ann) {
@@ -50,4 +51,6 @@ public class UserDateServiceImpl implements UserDateService {
     public List<UserDate> queryByTag(String tag) {
         return this.userDateMapper.queryByTag(tag);
     }
+
+
 }
